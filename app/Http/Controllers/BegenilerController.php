@@ -27,6 +27,7 @@ class BegenilerController extends Controller
                     'user_ip' => request()->ip(),
                     'konu_id' => $request->idkonu,
                     'user_id' => $begeniler->user_id,
+                    'durum' => $request->durum,
                 ]);
             }
             else{
