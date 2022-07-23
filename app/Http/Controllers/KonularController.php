@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Konular;
+use App\Models\Begeniler;
 use App\Models\KonuKategori;
 class KonularController extends Controller
 {
@@ -17,8 +18,9 @@ class KonularController extends Controller
        
     }
     public function konu_detay($ad,$id){
+        $begendiklerimiz=Begeniler::where('konu_id',$id)->get();
         $konulardetay=Konular::find($id);
-        return view('konu_detay',compact('konulardetay'));
+        return view('konu_detay',compact('konulardetay','begendiklerimiz'));
     }
     /**
      * Show the form for creating a new resource.

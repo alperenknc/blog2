@@ -8626,7 +8626,6 @@ i.roman {
 	.post-mediums .post-item {
 		margin-right: -15px;
 		margin-left: -15px;
-		padding-bottom: 25px;
 	}
 	.medium-aside {
 		padding-bottom: 0;
@@ -10249,8 +10248,4 @@ only screen and (                min-resolution: 2dppx){
 		opacity: 0;
 	}
 }
-@media (min-width:1200px){
-	.konuresim{
-		height: 203px!important;
-	}
-}
+

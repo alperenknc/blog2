@@ -75,12 +75,12 @@
 </style>
 {{-- beğeni butonu için ajax kodu --}}
 <script>
+    
     function begen(idkonu) {
         var nesne = $('#s3').val()
         var begeniler= Number($("#begeniler").val());
         if (nesne == "0") {
-            console.log("ekle")
-            console.log(begeniler)
+            console.log("ekle",begeniler)
             $.ajax({
                 type: "GET",
                 url: "{{ route('begeni') }}",
@@ -103,8 +103,7 @@
             });
 
         } else {
-            console.log("sil")
-            console.log(begeniler)
+            console.log("sil",begeniler)
             $.ajax({
                 type: "GET",
                 url: "{{ route('begeni') }}",

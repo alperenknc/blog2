@@ -1,0 +1,64 @@
+:root{
+    --maincolor:#a28671;
+}
+
+@media (min-width:1200px){
+	.konuresim{
+		height: 203px!important;
+	}
+}
+@media(min-width:768px) and (max-width:992px){
+    .metinkutu{
+        padding: 0px!important;
+    }
+    
+}
+@media(max-width:992px){
+    .metinkutu .post-item{
+        height: 300px!important;
+    }
+    .konuresim{
+        height: 500px!important;
+    }
+    .konuresim img{
+        height: 500px!important;
+    }
+}
+@media(max-width:568px){
+    .konuresim, .konuresim img{
+        height: 350px!important;
+    }
+}
+.medium-post-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.sayfaicerik{
+    padding: 30px 0px 20px!important;
+    position: relative;
+}
+.nopadding{
+    padding: 0px!important;
+}
+@media(max-width:568px){
+    .sayfaicerik .post-item-info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sayfaicerik .post-item-social{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .sayfaicerik .post-item-paragraph{
+        padding-left: 4rem!important;
+        padding-right: 4rem!important;
+    }
+}
+.lower i,
+.lower span {
+    color:var(--maincolor);
+}

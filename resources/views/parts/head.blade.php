@@ -20,6 +20,7 @@
     <link href="{{ asset('assets/css/bootstrap-gallery.css') }}" rel="stylesheet">
     <!-- ColorBox CSS -->
     <link href="{{ asset('assets/css/colorbox.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" /> --}}
     <!-- Custom font -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
