@@ -8,6 +8,7 @@
         @if(!empty($anasayfakonular))
             @foreach($anasayfakonular as $i=>$konu  )
                 <?php $konus =\App\Models\Begeniler::where('konu_id',$konu->id)->get(); ?>
+                <?php $begenler =\App\Models\Begeniler::where('konu_id',$konu->id)->get(); ?>
                 <?php $begenid =\App\Models\Begeniler::where('konu_id',$konu->id)->Where('user_id',1)->first(); ?>
                 {{-- {{ dd($begenid) }} --}}
                 <div class="row post-medium">
@@ -28,15 +29,14 @@
                                             data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>"
                                             class="pis-share"><i class="fa fa-share-alt"></i></a>
 
-                                        <a href="#!" class="bbuton @if(!empty($begenid))@if($begenid->durum==1) lower @endif @endif" onclick="begen($(this).attr('idkonu'))"
-
-                                            idkonu="{{ $konu->id }}">
-
+                                        <a href="#!"
+                                            class="bbuton {{  !empty($begenid) ? $begenid->durum==1 ? "lower" : "" :"" }}"
+                                            onclick="begen($(this).attr('idkonu'))" idkonu="{{ $konu->id }}">
                                             <i class="fa fa-heart"></i>
-                                            <input type="text" id="s3" hidden @if(!empty($begenid)) value="0" @else value="1" @endif>
+                                            [ <span id="begeniislem"> {{ $begenler->count() }} </span> ]
+                                            <input type="text" id="begeniler" hidden value="{{ $begenler->count() }}">
+                                            <input type="text" id="s3" hidden @if(!empty($begenid)) value="1" @else value="0" @endif>
                                             <input type="text" id="s1" hidden value="{{ $konus->count() }}">
-
-                                            <span id="s2"></span>
 
                                         </a>
                                     </div>
@@ -75,60 +75,57 @@
 </style>
 {{-- beğeni butonu için ajax kodu --}}
 <script>
-       function begen(idkonu) {
-        var nesne = $('#s3').val();
-
-        if(nesne == "1"){
-           
+    function begen(idkonu) {
+        var nesne = $('#s3').val()
+        var begeniler= Number($("#begeniler").val());
+        if (nesne == "0") {
+            console.log("ekle")
+            console.log(begeniler)
             $.ajax({
                 type: "GET",
                 url: "{{ route('begeni') }}",
                 data: {
                     'idkonu': idkonu,
-                    'durum' : 1
                 },
                 datatype: "html",
                 success: function (result) {
-                    if ($('#veri').text() == "Beğenildi") {
-                        $('#veri').text("Beğen")
+                    if (nesne == "0") {
+                        $(".bbuton").addClass('lower')
+                        $('#s3').attr('value',1)
+                        islem = $("#begeniler").attr('value',begeniler+1)
+                        $('#begeniislem').text()
+                        $('#begeniislem').text([ begeniler+1 ])
                     } else {
-                        // $(".bbuton").toggleClass('lower')
-                        // if (Number.sayi1 == Number.sayi2) {
-                        //     $(".bbuton span").text(sayi1-1)
-                        // }
-                        // else{
-                        //     $(".bbuton span").text(sayi1+1)
-                        // }
-
+                        $(".bbuton").removeClass('lower')
+                        $('#s3').attr('value',0)
                     }
                 }
             });
-       
-                }else{	
-                    $.ajax({
-                        type: "GET",
-                        url: "{{ route('begeni') }}",
-                        data: {
-                            'idkonu': idkonu,
-                            'durum' : 0
-                        },
-                        datatype: "html",
-                        success: function (result) {
-                            if ($('#veri').text() == "Beğenildi") {
-                                $('#veri').text("Beğen")
-                            } else {
-                                // $(".bbuton").toggleClass('lower')
-                                // if (Number.sayi1 == Number.sayi2) {
-                                //     $(".bbuton span").text(sayi1-1)
-                                // }
-                                // else{
-                                //     $(".bbuton span").text(sayi1+1)
-                                // }
 
-                            }
-                        }
-                    });
+        } else {
+            console.log("sil")
+            console.log(begeniler)
+            $.ajax({
+                type: "GET",
+                url: "{{ route('begeni') }}",
+                data: {
+                    'idkonu': idkonu,
+                },
+                datatype: "html",
+                success: function (result) {
+                    if (nesne == "1") {
+                        $(".bbuton").removeClass('lower')
+                        $('#s3').attr('value',0)
+                        $("#begeniler").attr('value',begeniler-1)
+                        $('#begeniislem').text()
+                        $('#begeniislem').text(begeniler-1)
+                    } else {
+                        $(".bbuton").addClass('lower')
+                        $('#s3').attr('value',1)
+                    }
                 }
+            });
+        }
     };
 
     // function begen(idkonu) {
@@ -153,7 +150,7 @@
     //                 else{
     //                     $(".bbuton span").text(sayi1+1)
     //                 }
-                    
+
     //             }
     //         }
     //     });
