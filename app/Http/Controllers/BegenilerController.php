@@ -21,6 +21,7 @@ class BegenilerController extends Controller
     {   
         $begeniler=Begeniler::get();
         $begeniler->user_id=1;
+        $begenicount=Begeniler::where('konu_id',$request->idkonu)->get();
         $konu =Begeniler::where('konu_id',$request->idkonu)->Where('user_id',$begeniler->user_id)->first();
             if ($konu==null) {
                 Begeniler::create([
@@ -29,10 +30,11 @@ class BegenilerController extends Controller
                     'user_id' => $begeniler->user_id,
                     'durum' => 1,
                 ]);
+                return response()->json(['konu' => $request->idkonu , 'durum'=> 0, 'sonuc'=>'eklendi','taplamb'=>$begenicount->count()+1]);
             }
             else{
                 Begeniler::find($konu->id)->delete();
-                // return response()->json(['durum'=>'1'],200);
+                return response()->json(['konu' => $request->idkonu , 'durum'=> 1, 'sonuc'=>'Silindi','taplamb'=>$begenicount->count()-1]);
             }
     }
 
