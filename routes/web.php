@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KonularController;
 use App\Http\Controllers\BegenilerController;
 
+require_once 'admin.php';
 // --------------------------------------------------------------------------//
 // Ana Sayfa
 Route::get('/', [HomeController::class, 'index'])->name('pages.anasayfa');
