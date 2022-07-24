@@ -8,12 +8,10 @@ use App\Http\Controllers\Controller;
 // --------------------------------------------------------------------------//
 // Admin
 Route::group(['prefix'=>'admin'], function(){
-    Route::get('/', [HomeController::class, 'index'])->name('admin.panel')->middleware('admin');
+    Route::get('/panel', [HomeController::class, 'index'])->name('admin.panel')->middleware('admin');
 
     Route::post('/giris', [KullaniciController::class, 'kullanici_giris'])->name('admin.giris.post');
     Route::get('/cikis', [KullaniciController::class, 'kullanici_cikis'])->name('admin.cikis.post');
-
-
 
 
     // Route::group(['prefix'=>'icerikler'], function() {
