@@ -3,24 +3,17 @@
 
 @endsection
 @section('content')
-<div class="col-md-8">
+<div class="col-md-8 contenticerik">
     <div class="post-fluid">
         <div class="container-fluid">
             <div class="row post-items">
                 <div class="post-item-banner">
-                    <img src="{{ asset('assets/img/img-44.png') }}" alt="" />
+                    <img src="{{ $konulardetay->resim }}" alt="" />
                 </div>
-                {{-- <div class="col-md-2">
-                    <div class="post-item-short">
-                        <span class="big-text">28</span>
-                        <span class="small-text">June 2015</span>
-                    </div>
-                </div> --}}
                 <div class="col-md-12 nopadding">
                     <div class="post-item-paragraph sayfaicerik">
                         <div class="post-item post-item-detail">
                             <div class="post-item-paragraph">
-								{{-- <a href="#" class="quick-read"><i class="fa fa-eye"></i></a> --}}
                                 <h1>  {{ $konulardetay->baslik }}</h1>
                                 {{ $konulardetay->yazi }}
                             </div>
@@ -39,7 +32,14 @@
                                         data-placement="top"
                                         data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>"
                                         class="pis-share"><i class="fa fa-share-alt"></i> 12</a> --}}
-                                    <a href="#"><i class="fa fa-heart"></i> 18</a>
+                                    <a href="#!"
+                                        class="bbuton numara-{{ $konulardetay->id }} {{ !empty($begeniyapan)? $begeniyapan->durum==1 ? "lower" :"" :" "}}"
+
+                                        onclick="begen($(this).attr('idkonu'))" idkonu="{{ $konulardetay->id }}"> <i class="fa fa-heart"></i>
+                                        [ <span id="begeniislem"> {{ $begenilercount->count() }} </span> ]
+                                        
+                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -87,28 +87,6 @@
                                                 ago</span></h6>
                                         <p class="comment-text"> mesaj icverik</p>
                                         <a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-                                        <!--
-										<div class="comment-item">
-											<a class="comment-photo" href="#">
-												<img src="assets/img/profil_photo-05.png" alt="" />
-											</a>
-											<div class="comment-body">
-												<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-												<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-												<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-											</div>
-										</div>
-										<div class="comment-item">
-											<a class="comment-photo" href="#">
-												<img src="assets/img/profil_photo-05.png" alt="" />
-											</a>
-											<div class="comment-body">
-												<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-												<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-												<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-											</div>
-										</div>
-										-->
                                     </div>
                                 </div>
 
@@ -134,56 +112,26 @@
 @endsection
 
 <script>
-	function begen(idkonu) {
-        var nesne = $('#s3').val()
-        var begeniler= Number($("#begeniler").val());
-        if (nesne == "0") {
-            console.log("ekle")
-            console.log(begeniler)
-            $.ajax({
-                type: "GET",
-                url: "{{ route('begeni') }}",
-                data: {
-                    'idkonu': idkonu,
-                },
-                datatype: "html",
-                success: function (result) {
-                    if (nesne == "0") {
-                        $(".bbuton").addClass('lower')
-                        $('#s3').attr('value',1)
-                        islem = $("#begeniler").attr('value',begeniler+1)
-                        $('#begeniislem').text()
-                        $('#begeniislem').text([ begeniler+1 ])
-                    } else {
-                        $(".bbuton").removeClass('lower')
-                        $('#s3').attr('value',0)
-                    }
+    function begen(idkonu) {
+        $.ajax({
+            type: "GET",
+            url: "{{ route('begeni') }}",
+            data: {
+                'idkonu': idkonu,
+            },
+            datatype: "html",
+            success: function (response) {
+                var durum = response.durum
+                if (durum == "0") {
+                    console.log("Beğeni Ekle" + response.konu)
+                    $(".numara-" + response.konu).addClass('lower')
+                    $(".numara-" + response.konu + " #begeniislem").text(response.taplamb)
+                } else {
+                    console.log("Beğeni Silindi" + response.konu)
+                    $(".numara-" + response.konu).removeClass('lower')
+                    $(".numara-" + response.konu + " #begeniislem").text(response.taplamb)
                 }
-            });
-
-        } else {
-            console.log("sil")
-            console.log(begeniler)
-            $.ajax({
-                type: "GET",
-                url: "{{ route('begeni') }}",
-                data: {
-                    'idkonu': idkonu,
-                },
-                datatype: "html",
-                success: function (result) {
-                    if (nesne == "1") {
-                        $(".bbuton").removeClass('lower')
-                        $('#s3').attr('value',0)
-                        $("#begeniler").attr('value',begeniler-1)
-                        $('#begeniislem').text()
-                        $('#begeniislem').text(begeniler-1)
-                    } else {
-                        $(".bbuton").addClass('lower')
-                        $('#s3').attr('value',1)
-                    }
-                }
-            });
-        }
+            }
+        });
     };
 </script>

@@ -57,8 +57,14 @@
         padding-left: 4rem!important;
         padding-right: 4rem!important;
     }
+    .contenticerik .post-item-banner img {
+        height: 300px!important;
+    }
 }
 .lower i,
 .lower span {
     color:var(--maincolor);
+}
+.contenticerik .post-item-banner img {
+    height: 500px;
 }

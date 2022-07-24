@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Konular;
 use App\Models\Begeniler;
 use App\Models\KonuKategori;
+use Illuminate\Support\Facades\Auth;
 class KonularController extends Controller
 {
     /**
@@ -18,9 +19,10 @@ class KonularController extends Controller
        
     }
     public function konu_detay($ad,$id){
-        $begendiklerimiz=Begeniler::where('konu_id',$id)->get();
+        $begenilercount=Begeniler::where('konu_id',$id)->get();
+        $begeniyapan=Begeniler::where('konu_id',$id)->where('user_id',1)->first();
         $konulardetay=Konular::find($id);
-        return view('konu_detay',compact('konulardetay','begendiklerimiz'));
+        return view('konu_detay',compact('konulardetay','begenilercount','begeniyapan'));
     }
     /**
      * Show the form for creating a new resource.

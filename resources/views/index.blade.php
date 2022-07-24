@@ -27,17 +27,17 @@
                                             data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>"
                                             class="pis-share"><i class="fa fa-share-alt"></i></a>
 
-                                        <a href="#!"
-                                            class="bbuton numara-{{ $konu->id }}
-                                            @if(!empty($begeni))
-                                            @if(($begeni->durum==1))
+                                        <a href="#!" class="bbuton numara-{{ $konu->id }}
+@if(!empty($begeni))
+@if(($begeni->durum==1))
                                             lower
-                                            @endif
-                                            @else
-                                            @endif "
-                                            onclick="begen($(this).attr('idkonu'))" idkonu="{{ $konu->id }}"> <i class="fa fa-heart"></i>
+@endif
+@else
+@endif"
+                                            onclick=" begen($(this).attr('idkonu'))" idkonu="{{ $konu->id }}"> <i
+                                                class="fa fa-heart"></i>
                                             [ <span id="begeniislem"> {{ $begeniler->count() }} </span> ]
-                                            
+
                                         </a>
                                     </div>
                                 </div>
@@ -75,116 +75,28 @@
 </style>
 {{-- beğeni butonu için ajax kodu --}}
 <script>
-
-function begen(idkonu) {
-    
-    
-    $.ajax({
-        type: "GET",
-        url: "{{ route('begeni') }}",
-        data: {
-            'idkonu': idkonu,
-        },
-        datatype: "html",
-        success: function (response) {
-            var durum =response.durum
-            if (durum == "0") {
-                console.log("Beğeni Ekle" +response.konu)
-                $(".numara-"+response.konu).addClass('lower')
-                $(".numara-"+response.konu +" #begeniislem").text(response.taplamb)
-            } else {
-                console.log("Beğeni Silindi".idkonu)
-                $(".numara-"+response.konu).removeClass('lower')
-                $(".numara-"+response.konu +" #begeniislem").text(response.taplamb)
+    function begen(idkonu) {
+        $.ajax({
+            type: "GET",
+            url: "{{ route('begeni') }}",
+            data: {
+                'idkonu': idkonu,
+            },
+            datatype: "html",
+            success: function (response) {
+                var durum = response.durum
+                if (durum == "0") {
+                    console.log("Beğeni Ekle" + response.konu)
+                    $(".numara-" + response.konu).addClass('lower')
+                    $(".numara-" + response.konu + " #begeniislem").text(response.taplamb)
+                } else {
+                    console.log("Beğeni Silindi" + response.konu)
+                    $(".numara-" + response.konu).removeClass('lower')
+                    $(".numara-" + response.konu + " #begeniislem").text(response.taplamb)
+                }
             }
-        }
-    });
-
+        });
     };
-
-
-
-
-
-    // function begen(idkonu) {
-    //     var nesne = $('#s3').val()
-    //     var begeniler= Number($("#begeniler").val());
-    //     if (nesne == "0") {
-    //         console.log("ekle",begeniler)
-    //         $.ajax({
-    //             type: "GET",
-    //             url: "{{ route('begeni') }}",
-    //             data: {
-    //                 'idkonu': idkonu,
-    //             },
-    //             datatype: "html",
-    //             success: function (result) {
-    //                 if (nesne == "0") {
-    //                     $(".bbuton").addClass('lower')
-    //                     $('#s3').attr('value',1)
-    //                     islem = $("#begeniler").attr('value',begeniler+1)
-    //                     $('#begeniislem').text()
-    //                     $('#begeniislem').text([ begeniler+1 ])
-    //                 } else {
-    //                     $(".bbuton").removeClass('lower')
-    //                     $('#s3').attr('value',0)
-    //                 }
-    //             }
-    //         });
-
-    //     } else {
-    //         console.log("sil",begeniler)
-    //         $.ajax({
-    //             type: "GET",
-    //             url: "{{ route('begeni') }}",
-    //             data: {
-    //                 'idkonu': idkonu,
-    //             },
-    //             datatype: "html",
-    //             success: function (result) {
-    //                 if (nesne == "1") {
-    //                     $(".bbuton").removeClass('lower')
-    //                     $('#s3').attr('value',0)
-    //                     $("#begeniler").attr('value',begeniler-1)
-    //                     $('#begeniislem').text()
-    //                     $('#begeniislem').text(begeniler-1)
-    //                 } else {
-    //                     $(".bbuton").addClass('lower')
-    //                     $('#s3').attr('value',1)
-    //                 }
-    //             }
-    //         });
-    //     }
-    // };
-
-    // function begen(idkonu) {
-    //     console.log(idkonu);
-    //     var sayi1= Number($("#s1").val());
-    //     var sayi2= Number($("#s2").val());
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "{{ route('begeni') }}",
-    //         data: {
-    //             'idkonu': idkonu
-    //         },
-    //         datatype: "html",
-    //         success: function (result) {
-    //             if ($('#veri').text() == "Beğenildi") {
-    //                 $('#veri').text("Beğen")
-    //             } else {
-    //                 $(".bbuton").toggleClass('lower')
-    //                 if (Number.sayi1 == Number.sayi2) {
-    //                     $(".bbuton span").text(sayi1-1)
-    //                 }
-    //                 else{
-    //                     $(".bbuton span").text(sayi1+1)
-    //                 }
-
-    //             }
-    //         }
-    //     });
-    // };
-
 </script>
 
 
