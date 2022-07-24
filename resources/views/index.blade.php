@@ -26,30 +26,18 @@
                                             data-trigger="focus" data-placement="bottom"
                                             data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>"
                                             class="pis-share"><i class="fa fa-share-alt"></i></a>
-
-                                        <a href="#!" class="bbuton numara-{{ $konu->id }}
-@if(!empty($begeni))
-@if(($begeni->durum==1))
-                                            lower
-@endif
-@else
-@endif"
-                                            onclick=" begen($(this).attr('idkonu'))" idkonu="{{ $konu->id }}"> <i
-                                                class="fa fa-heart"></i>
+                                        <a href="#!" class="bbuton numara-{{ $konu->id }} {{ !empty($begeni)? $begeni->durum==1 ? "lower" :"" :" "}}"
+                                            onclick=" begen($(this).attr('idkonu'))" idkonu="{{ $konu->id }}"> 
+                                            <i class="fa fa-heart"></i>
                                             [ <span id="begeniislem"> {{ $begeniler->count() }} </span> ]
-
                                         </a>
                                     </div>
                                 </div>
                                 <div id="veri"></div>
                                 <div class="post-item-paragraph">
-                                    <h2><a
-                                            href="{{ route('pages.konu.detay',[Str::slug($konu->baslik),$konu->id]) }}">{{ $konu->baslik }}
-                                        </a></h2>
-                                    <p class="ellipsis-readmore">{{ Str::limit($konu->yazi,100) }}<a
-                                            class="more"
-                                            href="{{ route('pages.konu.detay',[Str::slug($konu->baslik),$konu->id]) }}">&nbsp;
-                                            detail »</a></p>
+                                    <h2><a href="{{ route('pages.konu.detay',[Str::slug($konu->baslik),$konu->id]) }}">{{ $konu->baslik }}</a></h2>
+                                    <p  class="ellipsis-readmore">{{ Str::limit($konu->yazi,100) }}<a class="more"
+                                        href="{{ route('pages.konu.detay',[Str::slug($konu->baslik),$konu->id]) }}">&nbsp; detail »</a></p>
                                 </div>
                                 <div class="pm-bottom-info clearfix">
                                     <div class="pull-left">

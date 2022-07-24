@@ -6,12 +6,14 @@
                 <h4 class="modal-title"><i class="fa fa-unlock-alt"></i>LaRead Sign In</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{ route('admin.giris.post') }}" method="POST" >
+                    @csrf
+                    @method('post')
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" name="email" placeholder="Email">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                     <div class="linkbox">
                         <a href="#">Forgot password ?</a>
@@ -20,7 +22,7 @@
                     </div>
                     <div class="linkbox">
                         <label><input type="checkbox"><span>Remember me</span><i class="fa"></i></label>
-                        <button type="button" class="btn btn-golden btn-signin">SIGN IN</button>
+                        <button type="submit" class="btn btn-golden btn-signin">SIGN IN</button>
                     </div>
                 </form>
             </div>

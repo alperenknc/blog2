@@ -2,16 +2,23 @@
     <nav class="navbar navbar-fixed-top nav-down navbar-laread">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="medium-image-v1-2.html"><img height="64" src="assets/img/logo-light.png" alt=""></a>
+                <a class="navbar-brand" href="{{ route('pages.anasayfa') }}"><img height="64" src="{{ asset('assets/img/logo-light.png') }}" alt=""></a>
+                
             </div>
             <div class="get-post-titles">
                 <button type="button" class="navbar-toggle push-navbar" data-navbar-type="default">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
+            @if(Auth::check())
+            <a href="{{ route('admin.cikis.post') }}"  class="modal-form">
+                <i class="fa fa-sign-out"></i>
+            </a>
+            @else
             <a href="#" data-toggle="modal" data-target="#login-form" class="modal-form">
                 <i class="fa fa-user"></i>
             </a>
+            @endif
             <button type="button" class="navbar-toggle collapsed menu-collapse" data-toggle="collapse" data-target="#main-nav">
                 <span class="sr-only">Toggle navigation</span>
                 <i class="fa fa-plus"></i>
@@ -76,7 +83,7 @@
 
 <div class="container">
     <div class="head-text">
-        <h1>Read - it</h1>
+        <h1>{{ Auth::check() ? Auth::user()->name : "Read - it" }}</h1>
         <p class="lead-text">Blog. Designed for Read.</p>
     </div>
 </div>
