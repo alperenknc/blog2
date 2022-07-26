@@ -11,9 +11,10 @@
             @include('admin.parts.navbar')
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
             
-            @include('admin.parts.header')
-			@include('admin.index')
-                {{-- @yield('icerikler') --}}
+            	@include('admin.parts.header')
+				<div>
+                @yield('content')
+				</div>
                 @include('admin.parts.footer')
             </div>
     

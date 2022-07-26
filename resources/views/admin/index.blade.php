@@ -1,4 +1,7 @@
 
+@extends('admin.layouts.index')
+
+@section('content')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
@@ -3548,3 +3551,4 @@
     </div>
     <!--end::Entry-->
 </div>
+@endsection
