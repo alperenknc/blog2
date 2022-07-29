@@ -3099,7 +3099,7 @@ textarea.form-control {
   box-shadow: 0 0 0 0.2rem rgba(246, 78, 96, 0.25);
 }
 
-.form-inline {
+/* .form-inline {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3110,7 +3110,7 @@ textarea.form-control {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
+} */
 .form-inline .form-check {
   width: 100%;
 }

@@ -28,7 +28,7 @@
             <div class="quick-search quick-search-inline ml-20 w-300px" id="kt_quick_search_inline">
                 <!--begin::Form-->
                 <form method="get" class="quick-search-form">
-                    <div class="input-group rounded bg-light">
+                    <div class="input-group rounded bg-light"style="display: flex; flex-direction: row; flex-wrap: nowrap;">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <span class="svg-icon svg-icon-lg">

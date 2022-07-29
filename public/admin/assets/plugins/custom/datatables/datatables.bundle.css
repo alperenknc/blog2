@@ -27,12 +27,17 @@ table.dataTable.nowrap td {
 div.dataTables_wrapper div.dataTables_length label {
   font-weight: normal;
   text-align: left;
+  display: flex;
   white-space: nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 div.dataTables_wrapper div.dataTables_length select {
   width: auto;
   display: inline-block;
+   margin: 0 1rem;
+   height: unset!important;
 }
 
 div.dataTables_wrapper div.dataTables_filter {
@@ -42,8 +47,10 @@ div.dataTables_wrapper div.dataTables_filter {
 div.dataTables_wrapper div.dataTables_filter label {
   font-weight: normal;
   white-space: nowrap;
+  display: flex;
   text-align: left;
-}
+  justify-content: flex-end;
+  align-items: center;}
 
 div.dataTables_wrapper div.dataTables_filter input {
   margin-left: 0.5em;

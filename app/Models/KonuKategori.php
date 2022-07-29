@@ -11,5 +11,6 @@ class KonuKategori extends Model
     protected $table = 'konu_kategori';
     protected $fillable = [
         'baslik',
+        'slug',
     ];
 }

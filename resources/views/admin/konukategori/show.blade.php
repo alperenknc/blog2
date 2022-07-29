@@ -1,4 +1,10 @@
 @extends('admin.layouts.pages')
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.css" />
+
+<script type="text/javascript"
+    src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.js">
+</script>
 @section('content')
 <div class="container">
     <div class="card card-custom">
@@ -7,94 +13,49 @@
                 <span class="card-icon">
                     <i class="flaticon2-favourite text-primary"></i>
                 </span>
-                <h3 class="card-label">HTML(DOM) Sourced Data</h3>
+                <h3 class="card-label">Konu Kategorileri</h3>
             </div>
             <div class="card-toolbar">
-                <!--begin::Dropdown-->
-                <div class="dropdown dropdown-inline mr-2">
-                    <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="la la-download"></i>Export</button>
-                    <!--begin::Dropdown Menu-->
-                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                        <ul class="nav flex-column nav-hover">
-                            <li class="nav-header font-weight-bolder text-uppercase text-primary pb-2">Choose an option:</li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon la la-print"></i>
-                                    <span class="nav-text">Print</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon la la-copy"></i>
-                                    <span class="nav-text">Copy</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon la la-file-excel-o"></i>
-                                    <span class="nav-text">Excel</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon la la-file-text-o"></i>
-                                    <span class="nav-text">CSV</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon la la-file-pdf-o"></i>
-                                    <span class="nav-text">PDF</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--end::Dropdown Menu-->
-                </div>
-                <!--end::Dropdown-->
                 <!--begin::Button-->
-                <a href="#" class="btn btn-primary font-weight-bolder">
-                <i class="la la-plus"></i>New Record</a>
+                <a href="{{ route('konu-kategori.create') }}"
+                    class="btn btn-primary font-weight-bolder">
+                    <i class="la la-plus"></i>Yeni Ekle</a>
                 <!--end::Button-->
             </div>
         </div>
         <div class="card-body">
-            <!--begin: Datatable-->
-            <table class="table table-bordered table-hover table-checkable" id="kt_datatable" style="margin-top: 13px !important">
+            <table class="table table-bordered table-hover table-checkables" id="kt_datatables"
+                style="margin-top: 13px !important">
                 <thead>
                     <tr>
-                        <th>Record ID</th>
-                        <th>Order ID</th>
-                        <th>Country</th>
-                        <th>Ship City</th>
-                        <th>Ship Address</th>
-                        <th>Company Agent</th>
-                        <th>Company Name</th>
-                        <th>Ship Date</th>
-                        <th>Status</th>
-                        <th>Type</th>
-                        <th>Actions</th>
+                        <th>No</th>
+                        <th>Başlık</th>
+                        <th>İşlemler</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>64616-103</td>
-                        <td>Brazil</td>
-                        <td>São Félix do Xingu</td>
-                        <td>698 Oriole Pass</td>
-                        <td>Hayes Boule</td>
-                        <td>Casper-Kerluke</td>
-                        <td>10/15/2017</td>
-                        <td>5</td>
-                        <td>1</td>
-                        <td nowrap="nowrap"></td>
-                    </tr>
+                    @foreach($kategoriler as $kategori)
+                        <tr>
+                            <td>{{ $kategori->id }}</td>
+                            <td>{{ $kategori->baslik }}</td>
+                            <td class="child col-md-2" colspan="10">
+                                <ul data-dtr-index="0" class="dtr-details">
+                                    <li>
+                                        <a href="{{ route('konu-kategori.edit',$kategori->id) }}"
+                                            class="btn btn-sm btn-clean btn-icon" title="Edit details">
+                                            <i class="la la-edit"></i>
+                                        </a>
+                                        <a href="{{ route('delete.konukategori',$kategori->id) }}" class="btn btn-sm btn-clean btn-icon" title="Delete">
+                                            <i class="la la-trash"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
-            </table>
-            <!--end: Datatable-->
         </div>
     </div>
 </div>
+
 @endsection

@@ -28,5 +28,31 @@
 		<script src="{{ asset('admin/assets/js/pages/widgets.js') }}"></script>
 		<script src="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 		<script src="{{ asset('admin/assets/js/pages/crud/datatables/basic/scrollable.js') }}"></script>
+		<script>
+			$('#kt_datatables').DataTable({
+				language: {
+					info: "_TOTAL_ kayıttan _START_ - _END_ kayıt gösteriliyor.",
+					infoEmpty: "Gösterilecek hiç kayıt yok.",
+					loadingRecords: "Kayıtlar yükleniyor.",
+					lengthMenu: "Sayfada _MENU_ kayıt göster",
+					zeroRecords: "Tablo boş",
+					search: "Arama:",
+					infoFiltered: "(toplam _MAX_ kayıttan filtrelenenler)",
+					buttons: {
+						copyTitle: "Panoya kopyalandı.",
+						copySuccess: "Panoya %d satır kopyalandı",
+						copy: "Kopyala",
+						print: "Yazdır",
+					},
+		
+					paginate: {
+						first: "İlk",
+						previous: "Önceki",
+						next: "Sonraki",
+						last: "Son"
+					},
+				}
+			});
+		</script>
 </body>
 </html>
