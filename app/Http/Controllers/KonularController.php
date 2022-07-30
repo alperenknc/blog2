@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Konular;
 use App\Models\Begeniler;
+use App\Models\Yorumlar;
 use App\Models\KonuKategori;
 use Illuminate\Support\Facades\Auth;
 class KonularController extends Controller
@@ -19,10 +20,18 @@ class KonularController extends Controller
        
     }
     public function konu_detay($ad,$id){
+        
+        $yorumlar=Yorumlar::where('konu_id',$id)->where('durum',1)->get();
+
+        if (Auth::check()) {
+            $begenilercount=Begeniler::where('konu_id',$id)->get();
+            $begeniyapan=Begeniler::where('konu_id',$id)->where('user_id',Auth::user()->id)->first();
+            $konulardetay=Konular::find($id);
+            return view('konu_detay',compact('konulardetay','begenilercount','begeniyapan','yorumlar'));
+        }
         $begenilercount=Begeniler::where('konu_id',$id)->get();
-        $begeniyapan=Begeniler::where('konu_id',$id)->where('user_id',1)->first();
         $konulardetay=Konular::find($id);
-        return view('konu_detay',compact('konulardetay','begenilercount','begeniyapan'));
+        return view('konu_detay',compact('konulardetay','begenilercount','yorumlar'));
     }
     /**
      * Show the form for creating a new resource.

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Begeniler;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class BegenilerController extends Controller
 {
@@ -20,7 +21,7 @@ class BegenilerController extends Controller
     public function begeni(Request $request)
     {   
         $begeniler=Begeniler::get();
-        $begeniler->user_id=1;
+        $begeniler->user_id=Auth::user()->id;
         $begenicount=Begeniler::where('konu_id',$request->idkonu)->get();
         $konu =Begeniler::where('konu_id',$request->idkonu)->Where('user_id',$begeniler->user_id)->first();
             if ($konu==null) {

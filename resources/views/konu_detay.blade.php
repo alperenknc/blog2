@@ -22,9 +22,7 @@
 
                             <div class="post-item-info no-border clearfix">
                                 <p class="post-tags">
-                                    <a href="#">fashion</a>
-                                    <a href="#">culture</a>
-                                    <a href="#">art</a>
+                                    <a href="#">{{ $konulardetay->kategoriler->baslik }}</a>
                                 </p>
                                 <div class="post-item-social" style="display: flex; flex-wrap: nowrap; flex-direction: row;">
 									<div style="margin-right: 1rem">
@@ -36,8 +34,8 @@
                                         class="pis-share"><i class="fa fa-share-alt"></i> 12</a> --}}
                                     <a href="#!"
                                         class="bbuton numara-{{ $konulardetay->id }} {{ !empty($begeniyapan)? $begeniyapan->durum==1 ? "lower" :"" :" "}}"
-
-                                        onclick="begen($(this).attr('idkonu'))" idkonu="{{ $konulardetay->id }}"> <i class="fa fa-heart"></i>
+                                        @if(Auth::check()) onclick="begen($(this).attr('idkonu'))" @else data-toggle="modal" data-target="#login-form" class="modal-form" @endif
+                                        idkonu="{{ $konulardetay->id }}"> <i class="fa fa-heart"></i>
                                         [ <span id="begeniislem"> {{ $begenilercount->count() }} </span> ]
                                         
                                     </a>
@@ -55,52 +53,32 @@
 
                             <div class="comment-block">
 
-                                <div class="comment-item">
-                                    <a class="comment-photo" href="#">
-                                        <img src="assets/img/profil_photo-05.png" alt="" />
-                                    </a>
-                                    <div class="comment-body">
-                                        <h6 class="comment-heading">Matthew L. Fisher   •   <span class="comment-date">2
-                                                days ago</span></h6>
-                                        <p class="comment-text">I am about like you. First: paper and after: photoshop
-                                            (sometime).</p>
-                                        <a href="#" class="comment-reply active-comment"><i class="reply-icon"></i>
-                                            Reply</a>
-
-                                        <div class="comment-form">
-                                            <form>
-                                                <textarea class="comment-textarea"
-                                                    placeholder="Reply to Lauren Bonk"></textarea>
-                                                <input class="comment-input" placeholder="Name" type="text" />
-                                                <input class="comment-input" placeholder="or Email" type="text" />
-                                                <button class="comment-submit">Post Comment</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="comment-item">
+                                 @foreach($yorumlar as $yorum)
+                                 <div class="comment-item">
                                     <a class="comment-photo" href="#">
                                         <img src="{{ asset('assets/img/profil_photo-05.png') }}"
                                             alt="" />
                                     </a>
                                     <div class="comment-body">
-                                        <h6 class="comment-heading">Lauren Bonk   •   <span class="comment-date">2 days
-                                                ago</span></h6>
-                                        <p class="comment-text"> mesaj icverik</p>
-                                        <a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
+                                        <h6 class="comment-heading">{{ $yorum->userid->name }}   •   <span class="comment-date">
+                                            {{  $yorum->created_at->diffForHumans() }}</span></h6>
+                                        <p class="comment-text"> {!! $yorum->mesaj !!}</p>
                                     </div>
                                 </div>
-
-
-                                <div class="comment-form main-comment-form">
-                                    <form>
-                                        <textarea class="comment-textarea" placeholder="Leave a comment..."></textarea>
+                                 @endforeach
+                                
+                                <div class="comment-form main-comment-form" style="padding-top: 1rem;">
+                                    <form action="{{ route('yorum') }}" method="POST">
+                                        @csrf
+                                        <textarea class="comment-textarea"placeholder="Leave a comment..." name="mesaj" @if(!Auth::check()) data-toggle="modal" data-target="#login-form" class="modal-form" readonly="yes"@endif></textarea>
+                                        @if(Auth::check())
                                         <div class="at-focus">
-                                            <input class="comment-input" placeholder="Name" type="text" />
-                                            <input class="comment-input" placeholder="or Email" type="text" />
-                                            <button class="comment-submit">Post Comment</button>
+                                            <input name="konu_id" value="{{ $konulardetay->id }}" hidden type="text" />
+                                            <input class="comment-input" placeholder="Name"  value="{{ Auth::user()->name }}" disabled type="text" />
+                                            <input class="comment-input" placeholder="or Email" value="{{ Auth::user()->email }}" disabled type="email" />
+                                            <button type="submit" class="comment-submit">Post Comment</button>
                                         </div>
+                                        @endif
                                     </form>
                                 </div>
                             </div>
