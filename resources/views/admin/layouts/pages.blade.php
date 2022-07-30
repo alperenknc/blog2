@@ -8,6 +8,7 @@
 </head>
 <body id="kt_body" class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
     @include('admin.parts.mobilheader')
+	@include('parts.sweetalert')
     <div class="d-flex flex-column flex-root">
         <!--begin::Page-->
         <div class="d-flex flex-row flex-column-fluid page">

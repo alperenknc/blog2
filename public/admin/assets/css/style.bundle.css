@@ -85043,3 +85043,10 @@ body {
     padding-top: 0;
   }
 }
+.tox-statusbar__branding{
+  display: none;
+}
+.swal2-popup.swal2-modal.swal2-icon-success.swal2-show,.swal2-popup.swal2-modal.swal2-icon-error.swal2-show{
+  display: grid;
+  justify-items: center!important;
+}

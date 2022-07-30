@@ -50,25 +50,18 @@ class KonuKategoriController extends Controller
             // BU SATIRDA AYNI ISIMDEN KATEGORİ OLUSTURMAMIZI ENGELLIYORUZ
             $isTekrar=KonuKategori::where('baslik',Str::slug($request->baslik))->first();
             if ($isTekrar) {
-                return redirect()->back();
+                return redirect()->route('konu-kategori.create')->with('no', 'Hata , Konu Kategorisi Zaten Bulunmakta.');
             }
             else{
             $kategori =new KonuKategori;
             $kategori->baslik=$request->baslik;
             $kategori->slug=Str::slug($request->baslik);
-    
-            // if($request->hasFile('resim')){
-            //     $resimN=Str::slug($request->baslik).'.'.$request->resim->getClientOriginalExtension();
-            //     $request->resim->move(public_path('uploads/kategoriler/'),$resimN);
-            //     $kategori->resim='uploads/kategoriler/'.$resimN;
-            // }
 
             $kategori->save();
-            return redirect()->back();
-            // return redirect()->route('konu-kategori.index');
+            return redirect()->route('konu-kategori.create')->with('ok', 'Başarılı , Konu Kategorisi Oluşturuldu.');
             }
         }catch(\Throwable $e){
-            return "Hata";
+            return redirect()->route('konu-kategori.create')->with('no', 'Hata , Konu Kategorisi Oluşturulamadı.');
         }
         
     }
@@ -109,21 +102,15 @@ class KonuKategoriController extends Controller
             
             $request->validate([
                 'baslik'=>'required|min:3',
-                // 'resim' => 'mimes:png,jpg, jpeg, png, bmp, gif,webp,image,svg|dimensions:svg|max:4048',
             ]);
             $kategori =KonuKategori::findOrFail($id);
             $kategori->baslik=$request->baslik;
             $kategori->slug=Str::slug($request->baslik);
     
-            // if($request->hasFile('resim')){
-            //     $resimN=Str::slug($request->baslik).'.'.$request->resim->getClientOriginalExtension();
-            //     $request->resim->move(public_path('uploads/kategoriler/'),$resimN);
-            //     $kategori->resim='uploads/kategoriler/'.$resimN;
-            // }
             $kategori->save();
-            return redirect()->back();
+            return redirect()->route('konu-kategori.index')->with('ok', 'Başarılı , Konu Kategorisi Güncellendi.');
         }catch(\Throwable $e){
-            return "Hata";
+            return redirect()->route('konu-kategori.index')->with('no', 'Hata , Konu Kategorisi Güncellenmedi.');
         }
     }
     public function delete($id){
@@ -134,7 +121,7 @@ class KonuKategoriController extends Controller
         // }
         // veri tabanından silme
         KonuKategori::find($id)->delete();
-        return redirect()->route('konu-kategori.index');
+        return redirect()->route('konu-kategori.index')->with('ok', 'Başarılı Kategori Silinidi.');
     }
     /**
      * Remove the specified resource from storage.

@@ -52,14 +52,14 @@ class KonularController extends Controller
             $isTekrar=Konular::where('baslik',$request->baslik)->first();
 
             if ($isTekrar) {
-                // return redirect()->back();
-                return redirect()->route('konular.create');
+                return redirect()->route('konular.create')->with('no', 'Bu başlıkdan şuan bulunmaktadır.');
             }
             else{
             $konular =new Konular;
             $konular->baslik=$request->baslik;
             $konular->slug=Str::slug($request->baslik);
-            $konular->yazi=$konular->resim;
+            $konular->yazi=$request->yazi;
+            $konular->kategori=$request->kategori;
 
             if($request->hasFile('resim')){
                 $resimN=Str::slug($request->baslik).'.'.$request->resim->getClientOriginalExtension();
@@ -67,7 +67,7 @@ class KonularController extends Controller
                 $konular->resim='upload/konular/'.$resimN;
             }
             $konular->save();
-            return redirect()->route('konular.create');
+            return redirect()->route('konular.create')->with('ok', 'Konu oluşturuldu.');
             }
         }catch(\Throwable $e){
             return "Hata";
@@ -95,8 +95,9 @@ class KonularController extends Controller
     public function edit($id)
     {
         $konugetir=Konular::findOrFail($id);
-        $kategori=KonuKategori::where('id',$konugetir->kategori)->first();
-        return view('admin.konular.edit',compact('konugetir','konugetir'));
+        $kategori=KonuKategori::where('id',$konugetir->kategori)->get();
+        $kategoriler=KonuKategori::all();
+        return view('admin.konular.edit',compact('konugetir','kategori','kategoriler'));
     }
 
     /**
@@ -117,16 +118,18 @@ class KonularController extends Controller
             $kategori =Konular::findOrFail($id);
             $kategori->baslik=$request->baslik;
             $kategori->slug=Str::slug($request->baslik);
-    
+            $kategori->yazi=$request->yazi;
+            $kategori->kategori=$request->kategori;
+
             if($request->hasFile('resim')){
                 $resimN=Str::slug($request->baslik).'.'.$request->resim->getClientOriginalExtension();
                 $request->resim->move(public_path('uploads/konular/'),$resimN);
                 $kategori->resim='uploads/konular/'.$resimN;
             }
             $kategori->save();
-            return redirect()->back();
+            return redirect()->route('konular.edit',$kategori->id)->with('ok', 'Konu Başarı ile Güncellendi.');
         }catch(\Throwable $e){
-            return "Hata";
+            return redirect()->route('konular.edit',$kategori->id)->with('no', 'Hata Konu Güncellenemedi');
         }
     }
     public function delete($id){
@@ -137,7 +140,7 @@ class KonularController extends Controller
         }
         // veri tabanından silme
         Konular::find($id)->delete();
-        return redirect()->route('konular.index');
+        return redirect()->route('konular.index')->with('ok', 'Konu Başarı ile Silindi.');
     }
     /**
      * Remove the specified resource from storage.

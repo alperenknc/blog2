@@ -12,7 +12,7 @@
                 <?php $begeni =\App\Models\Begeniler::where('konu_id',$konu->id)->where('user_id',1)->first(); ?>
                 <div class="row post-medium">
                     <div class="col-md-5">
-                        <div class="row konuresim"><img src="{{ $konu->resim }}" alt="{{ $konu->baslik }}" /></div>
+                        <div class="row konuresim"><img src="{{ $konu->resim }}" alt="{{ $konu->baslik }}" style="height: 100%;" /></div>
                     </div>
                     <div class="col-md-7">
                         <div class="post-item">
@@ -35,8 +35,8 @@
                                 </div>
                                 <div id="veri"></div>
                                 <div class="post-item-paragraph">
-                                    <h2><a href="{{ route('pages.konu.detay',[Str::slug($konu->baslik),$konu->id]) }}">{{ $konu->baslik }}</a></h2>
-                                    <p  class="ellipsis-readmore">{{ Str::limit($konu->yazi,100) }}<a class="more"
+                                    <h2><a href="{{ route('pages.konu.detay',[Str::slug($konu->baslik),$konu->id]) }}">{{ Str::limit($konu->baslik,50) }}</a></h2>
+                                    <p  class="ellipsis-readmore">{{ Str::limit(strip_tags($konu->yazi),100) }}<a class="more"
                                         href="{{ route('pages.konu.detay',[Str::slug($konu->baslik),$konu->id]) }}">&nbsp; detail »</a></p>
                                 </div>
                                 <div class="pm-bottom-info clearfix">
@@ -59,7 +59,6 @@
     .lower span {
         color: #000000;
     }
-
 </style>
 {{-- beğeni butonu için ajax kodu --}}
 <script>

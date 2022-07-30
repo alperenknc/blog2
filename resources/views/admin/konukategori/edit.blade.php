@@ -20,8 +20,8 @@ Konu Kategori Düzenle
             </div>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success mr-2">Submit</button>
-            <button type="button" onclick="location.href=('{{ Route('konu-kategori.index') }}')"  class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-success mr-2">Kaydet</button>
+            <button type="button" onclick="location.href=('{{ Route('konu-kategori.index') }}')"  class="btn btn-secondary">Geri</button>
         </div>
     </form>
     <!--end::Form-->

@@ -37,7 +37,7 @@ Konular
                             <td>{{ $konu->id }}</td>
                             <td>{{ $konu->baslik }}</td>
                             <td><img src="{{ asset($konu->resim) }}" width="100px" alt="{{ $konu->baslik }}"></td>
-                            <td>{!! Str::limit($konu->yazi,100) !!}</td>
+                            <td>{{  Str::limit(strip_tags($konu->yazi),100)  }}</td>
                             <td class="child col-md-2" colspan="10">
                                 <ul data-dtr-index="0" class="dtr-details">
                                     <li>

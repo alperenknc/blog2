@@ -27,17 +27,17 @@ Konu Oluşturma
                     <label>Resim</label>
                     <input type="file" class="form-control form-control-lg" placeholder="resim ekle" name="resim" />
                 </div>
-                <div class="form-group col-md-6">
+                {{-- <div class="form-group col-md-6">
                     <label class="col-3 col-form-label">Durum</label>
                     <div class="col-3">
                         <span class="switch switch-lg switch-icon">
                             <label>
-                                <input type="checkbox" id="toogles" checked  name="select" onclick="toggleWeather()" value="0" />
+                                <input type="checkbox" id="toogles" checked name="durum" value="1" />
                                 <span></span>
                             </label>
                         </span>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-group col-md-6">
                     <label for="exampleSelectl">Kategori</label>
@@ -68,16 +68,32 @@ Konu Oluşturma
     </div>
 </div>
 <script>
-function toggleWeather() {
+    ck = 0; //init checkbox is unchecked
+    function doChecked() {
+        document.getElementById("ck").checked = "checked";
+        document.getElementById("ck").checked = true;
+        console.log(1);
+        ck = 1;
+    }
 
-if (document.getElementById('toogles').checked)
+    function unChecked() {
+        document.getElementById("ck").checked = "";
+        console.log(1);
+        document.getElementById("ck").checked = false;
+        ck = 0;
+    }
 
-console.log('ekle');
+    // function togglechanced() {
 
-else
+    //     if (document.getElementById('toogles').checked) {
+    //         $("#toogles").change('chacked');
+    //         console.log('ekle');
+    //     } else {
+    //         $("#toogles").change('chacked');
+    //         console.log('sil');
 
-console.log('sıl');
-}
+    //     }
+    // }
 
 </script>
 <script>

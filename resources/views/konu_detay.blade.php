@@ -8,14 +8,16 @@
         <div class="container-fluid">
             <div class="row post-items">
                 <div class="post-item-banner">
-                    <img src="{{ $konulardetay->resim }}" alt="" />
+                    <a href="{{ asset($konulardetay->resim) }}" data-fancybox="">
+                        <img src="{{ asset($konulardetay->resim) }}" alt="{{ $konulardetay->baslik }}" />
+                    </a>
                 </div>
                 <div class="col-md-12 nopadding">
                     <div class="post-item-paragraph sayfaicerik">
                         <div class="post-item post-item-detail">
                             <div class="post-item-paragraph">
-                                <h1>  {{ $konulardetay->baslik }}</h1>
-                                {{ $konulardetay->yazi }}
+                                <h1>{{ $konulardetay->baslik }}</h1>
+                                {!! $konulardetay->yazi !!}
                             </div>
 
                             <div class="post-item-info no-border clearfix">

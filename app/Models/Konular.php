@@ -18,6 +18,6 @@ class Konular extends Model
         'durum',
     ];
     public function kategoriler(){
-        return $this->belongsTo(KonuKategori::class, 'kategori');
+        return $this->belongsTo(KonuKategori::class,'kategori', 'id');
     }
 }
