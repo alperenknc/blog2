@@ -14,6 +14,7 @@ class Konular extends Model
         'resim',
         'kategori',
         'yazi',
+        'slug',
         'durum',
     ];
     public function kategoriler(){

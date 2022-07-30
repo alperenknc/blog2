@@ -127,6 +127,9 @@
             <!--begin::Create-->
             <div class="dropdown">
                 <!--begin::Toggle-->
+                <div class="topbar-item " >
+                    <div class="btn btn-primary font-weight-bolder" onclick="location.href='{{ route('pages.anasayfa') }}'" style="margin-right: 0.5rem;">Siteye Git</div>
+                </div>
                 <div class="topbar-item mr-4" data-toggle="dropdown" data-offset="10px,0px">
                     <div class="btn font-weight-bolder btn-sm btn-light-success px-5">Create</div>
                 </div>

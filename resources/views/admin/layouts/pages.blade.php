@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     @include('admin.parts.head')
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
 </head>
 <body id="kt_body" class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading">
     @include('admin.parts.mobilheader')
@@ -28,6 +31,12 @@
 		<script src="{{ asset('admin/assets/js/pages/widgets.js') }}"></script>
 		<script src="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 		<script src="{{ asset('admin/assets/js/pages/crud/datatables/basic/scrollable.js') }}"></script>
+		<script src="{{ asset('admin/assets/plugins/custom/uppy/uppy.bundle.js') }}"></script>
+		<script src="{{ asset('admin/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+		<script src="{{ asset('admin/assets/js/pages/crud/forms/editors/tinymce.js') }}"></script>
+		
+
+
 		<script>
 			$('#kt_datatables').DataTable({
 				language: {
