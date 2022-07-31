@@ -85050,3 +85050,6 @@ body {
   display: grid;
   justify-items: center!important;
 }
+.form-control{
+height: 40px!important;
+}

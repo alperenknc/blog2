@@ -20,7 +20,7 @@ Kategoriler
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->
-                <a href="{{ route('konu-kategori.create') }}"
+                <a href="{{ route('konu-kategori.create') }}"  
                     class="btn btn-primary font-weight-bolder">
                     <i class="la la-plus"></i>Yeni Ekle</a>
                 <!--end::Button-->
