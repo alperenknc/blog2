@@ -14,7 +14,7 @@
                 <div class="row post-medium">
                     <div class="col-md-5">
                         <div class="row konuresim"><img src="{{ $konu->resim }}" alt="{{ $konu->baslik }}"
-                                style="height: 100%;" /></div>
+                                style="height: 100%;width:100%" /></div>
                     </div>
                     <div class="col-md-7">
                         <div class="post-item">
