@@ -17,7 +17,7 @@
                         <div class="post-item post-item-detail">
                             <div class="post-item-paragraph">
                                 <h1>{{ $konulardetay->baslik }}</h1>
-                                {!! $konulardetay->yazi !!}
+                                <div>{!! $konulardetay->yazi !!}</div>
                             </div>
 
                             <div class="post-item-info no-border clearfix">
