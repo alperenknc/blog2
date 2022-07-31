@@ -51,7 +51,6 @@ Yorumlar
                                             @if($item->durum==1)
                                                 checked
                                             @endif
-                                            
                                             name="select" />
                                             <span></span>
                                            </label>

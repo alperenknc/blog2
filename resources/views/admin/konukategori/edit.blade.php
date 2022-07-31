@@ -14,11 +14,16 @@ Konu Kategori Düzenle
         @method('put')
         @csrf
         <div class="card-body">
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label>Başlık</label>
                 <input type="text" class="form-control form-control-lg" name="baslik" value="{{ $kategorigetir->baslik }}" />
             </div>
-        </div>
+            <div class="form-group col-md-6">
+                <label>Resim</label>
+                <input type="file" class="form-control form-control-lg" placeholder="resim ekle" name="resim" />
+                <img src="{{ asset($kategorigetir->resim) }}" width="100px" alt="">
+            </div>        </div>
+        
         <div class="card-footer">
             <button type="submit" class="btn btn-success mr-2">Kaydet</button>
             <button type="button" onclick="location.href=('{{ Route('konu-kategori.index') }}')"  class="btn btn-secondary">Geri</button>

@@ -14,23 +14,17 @@ Konu Kategori Oluşturma
             </div> --}}
         </div>
         <!--begin::Form-->
-        <form class="form" action="{{ route('konu-kategori.store') }}" method="Post">
+        <form class="form" action="{{ route('konu-kategori.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label>Başlık</label>
                     <input type="text" class="form-control form-control-lg" placeholder="Başlık Gir" name="baslik" />
                 </div>
-                {{-- <div class="form-group">
-                    <label for="exampleSelectl">Large Select</label>
-                    <select class="form-control form-control-lg" id="exampleSelectl">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div> --}}
+                <div class="form-group col-md-6">
+                    <label class="form-label">Resim</label>
+                    <input type="file"  class="form-control form-control-lg" name="resim"/>
+                </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-success mr-2">Kaydet</button>
@@ -41,4 +35,15 @@ Konu Kategori Oluşturma
     </div>
     <!--end::Card-->
 </div>
+{{-- @if($errors->Any())
+    @foreach($errors->all() as $error)
+        <script>
+            Swal.fire(
+                'HATA!',
+                ' {{ $errors }}</br>',
+                'error'
+            )
+        </script>
+    @endforeach
+@endif --}}
 @endsection

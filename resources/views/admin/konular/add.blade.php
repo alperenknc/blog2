@@ -67,35 +67,7 @@ Konu Oluşturma
         </form>
     </div>
 </div>
-<script>
-    ck = 0; //init checkbox is unchecked
-    function doChecked() {
-        document.getElementById("ck").checked = "checked";
-        document.getElementById("ck").checked = true;
-        console.log(1);
-        ck = 1;
-    }
 
-    function unChecked() {
-        document.getElementById("ck").checked = "";
-        console.log(1);
-        document.getElementById("ck").checked = false;
-        ck = 0;
-    }
-
-    // function togglechanced() {
-
-    //     if (document.getElementById('toogles').checked) {
-    //         $("#toogles").change('chacked');
-    //         console.log('ekle');
-    //     } else {
-    //         $("#toogles").change('chacked');
-    //         console.log('sil');
-
-    //     }
-    // }
-
-</script>
 <script>
     var demos = function () {
         tinymce.init({

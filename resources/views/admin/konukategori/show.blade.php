@@ -1,10 +1,13 @@
 @extends('admin.layouts.pages')
+@section('title')
+Kategoriler
+@endsection
 <link rel="stylesheet" type="text/css"
     href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.css" />
-
 <script type="text/javascript"
     src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.js">
 </script>
+
 @section('content')
 <div class="container">
     <div class="card card-custom">
@@ -30,6 +33,7 @@
                     <tr>
                         <th>No</th>
                         <th>Başlık</th>
+                        <th>Resim</th>
                         <th>İşlemler</th>
                     </tr>
                 </thead>
@@ -38,6 +42,7 @@
                         <tr>
                             <td>{{ $kategori->id }}</td>
                             <td>{{ $kategori->baslik }}</td>
+                            <td><img src="{{ asset($kategori->resim) }}" width="100px" alt="{{ $kategori->baslik }}"></td>
                             <td class="child col-md-2" colspan="10">
                                 <ul data-dtr-index="0" class="dtr-details">
                                     <li>
