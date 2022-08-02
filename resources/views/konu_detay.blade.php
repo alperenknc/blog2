@@ -1,6 +1,6 @@
-@extends('layouts.sayfa')
+@extends('layouts.index')
 @section('title')
-
+{{ Str::limit($konulardetay->baslik,50) }}
 @endsection
 @section('content')
 <div class="col-md-8 contenticerik">
@@ -9,7 +9,7 @@
             <div class="row post-items">
                 <div class="post-item-banner">
                     <a href="{{ asset($konulardetay->resim) }}" data-fancybox="">
-                        <img src="{{ asset($konulardetay->resim) }}" alt="{{ $konulardetay->baslik }}" />
+                        <img src="{{ asset($konulardetay->resim) }} " style="width: 100%;" alt="{{ $konulardetay->baslik }}" />
                     </a>
                 </div>
                 <div class="col-md-12 nopadding">
@@ -22,7 +22,7 @@
 
                             <div class="post-item-info no-border clearfix">
                                 <p class="post-tags">
-                                    <a href="#">{{ $konulardetay->kategoriler->baslik }}</a>
+                                    <a href="{{ route('pages.kategoriler.detay',[Str::slug($konulardetay->kategoriler->baslik),$konulardetay->kategoriler->id]) }}">{{ $konulardetay->kategoriler->baslik }}</a>
                                 </p>
                                 <div class="post-item-social" style="display: flex; flex-wrap: nowrap; flex-direction: row;">
 									<div style="margin-right: 1rem">
@@ -44,11 +44,8 @@
                             </div>
                         </div>
                         <div class="comment-box">
-                            <a class="btn btn-golden" href="#">Leave a comment</a>
                             <div class="comment-tab">
-                                <a href="#" class="comment-info">Comments (28)</a>
-                                <i class="i">|</i>
-                                <a href="#" class="comment-info"><i class="fa fa-comments"></i> Show all</a>
+                                </i><h2>COMMENTS <i class="fas fa-comment-lines"></i></h2>
                             </div>
 
                             <div class="comment-block">
@@ -56,7 +53,7 @@
                                  @foreach($yorumlar as $yorum)
                                  <div class="comment-item">
                                     <a class="comment-photo" href="#">
-                                        <img src="{{ asset('assets/img/profil_photo-05.png') }}"
+                                        <img src="{{ asset('assets/img/profil_photo-05.png') }}" 
                                             alt="" />
                                     </a>
                                     <div class="comment-body">

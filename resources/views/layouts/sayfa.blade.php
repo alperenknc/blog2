@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     @yield('content')
-                    @include('parts.sidebar')
+                    {{-- @include('parts.sidebar') --}}
                 </div>
             </div>
         @include('parts.footer')

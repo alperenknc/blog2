@@ -1,19 +1,19 @@
 @extends('layouts.index')
 @section('title')
-Home Page
+{{ $kateogi->baslik }}
 @endsection
 @section('content')
 
 <div class="col-md-8 nopadding">
     <div class="post-mediums">
-        @if(!empty($anasayfakonular))
-            @foreach($anasayfakonular as $i=>$konu  )
+        @if(!empty($konular))
+            @foreach($konular as $i=>$konu  )
                 <?php $konus =\App\Models\Begeniler::where('konu_id',$konu->id)->get(); ?>
                 <?php $begeniler =\App\Models\Begeniler::where('konu_id',$konu->id)->get(); ?>
                 @if(Auth::check())  <?php $begeni =\App\Models\Begeniler::where('konu_id',$konu->id)->where('user_id',Auth::user()->id)->first(); ?> @endif
                 <div class="row post-medium">
                     <div class="col-md-5">
-                        <div class="konuresim"><img src="{{ $konu->resim }}" alt="{{ $konu->baslik }}"
+                        <div class="konuresim"><img src="{{asset($konu->resim)}}" alt="{{ $konu->baslik }}"
                                 style="height: 100%;width:100%" /></div>
                     </div>
                     <div class="col-md-7">

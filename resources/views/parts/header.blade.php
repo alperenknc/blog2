@@ -27,26 +27,28 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="{{ route('pages.anasayfa') }}">HOME</a>
-                        {{-- <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{}}">Large Image v1</a></li>
-                        </ul> --}}
                     </li>
                     <li>
-                        <a href="{{ route('admin.panel') }}" class="dropdown-toggle" >Panel</a>
+                        <a href="{{ route('pages.kategoriler') }}">CATEGORY</a>
                     </li>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">PAGES</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="about-v1.html">About v1</a></li>
-                        </ul>
+                        <a href="">ABOUTS</a>
                     </li>
-                    <li>
+                    {{-- <li>
+                        <a href="">CONTACT</a>
+                    </li> --}}
+                    {{-- <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">FEATURES</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="widget.html">Widgets</a></li>
 
                         </ul>
-                    </li>
+                    </li> --}}
+                    @if(Auth::check() && Auth::user()->role==1)
+                    <li>
+                        <a href="{{ route('admin.panel') }}" class="dropdown-toggle" >ADMIN</a>
+                    </li>  
+                    @endif
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

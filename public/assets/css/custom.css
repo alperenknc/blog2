@@ -12,8 +12,11 @@
     .metinkutu{
         padding: 0px!important;
     }
-    
+    .konuresim{
+        height: 200px!important;
+    }
 }
+
 @media(max-width:992px){
     .metinkutu .post-item{
         height: 300px!important;
@@ -68,4 +71,10 @@
 }
 .contenticerik .post-item-banner img {
     height: 500px;
+}
+.post-sayt,.konuresim{
+    height: 200px;
+}
+.post-item-paragraph{
+    word-break: break-all; 
 }

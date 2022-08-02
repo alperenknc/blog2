@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
-    <title>@yield('title') | Home Page</title>
+    <title>@yield('title') | Read Each</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome CSS -->

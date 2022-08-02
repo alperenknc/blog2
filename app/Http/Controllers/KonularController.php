@@ -31,6 +31,7 @@ class KonularController extends Controller
         }
         $begenilercount=Begeniler::where('konu_id',$id)->get();
         $konulardetay=Konular::find($id);
+        $this->ziyaretci_ekle(config('ziyaret.konu'),$konulardetay->id);
         return view('konu_detay',compact('konulardetay','begenilercount','yorumlar'));
     }
     /**
