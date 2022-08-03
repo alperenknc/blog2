@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {  
-        $anasayfakonular=Konular::where('durum',1)->get();
+        $anasayfakonular=Konular::where('durum',1)->orderBy('created_at','DESC')->get();
         $this->ziyaretci_ekle(config('ziyaret.anasayfa'),config('ziyaret.anasayfa'));
         return view('index',compact('anasayfakonular'));
     }

@@ -12,8 +12,10 @@ use App\Models\Ziyaretciler;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-
+    public function __construct()
+    {
+        \View::share('ziyaretciler',Ziyaretciler::orderBy('created_at','desc')->get());
+    }
 
     public function ziyaretci_ekle($t,$p){
         //$p = kategori , $i = id

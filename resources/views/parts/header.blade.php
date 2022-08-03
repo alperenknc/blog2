@@ -58,6 +58,9 @@
 <div class="container">
     <div class="head-text">
         <h1>{{ Auth::check() ? Auth::user()->name : "Read - it" }}</h1>
-        <p class="lead-text">Blog, Read it.</p>
+        <div  style=" display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; justify-content: center;">
+           <p class="lead-text"><strong><h3 style="margin: 0px;"> {{ $ziyaretciler->count() }}&nbsp;</h3></strong> this many people read them all one by one</p> 
+        </div>
+        
     </div>
 </div>

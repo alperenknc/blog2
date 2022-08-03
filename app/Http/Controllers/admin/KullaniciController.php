@@ -10,6 +10,10 @@ use Illuminate\Support\Str;
 
 class KullaniciController extends Controller
 {
+    public function index(){
+        $kullanicilar=User::where('role',0)->orderBy('Created_at','DESC')->get();
+        return view('admin.kullanicilar.show',compact('kullanicilar'));
+    }
     public function kullanici_giris(Request $request){
         // dd($request);
         if (Auth::attempt(['email'=>$request->email,'password'=>$request->password,'role'=>1])) {

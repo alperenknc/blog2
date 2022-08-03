@@ -25,4 +25,5 @@ Route::group(['prefix'=>'admin'], function(){
     Route::get('/yorum-sil/{id}',[YorumlarController::class, 'delete'])->name('delete.yorum')->middleware('admin');
     Route::get('/switchy',[YorumlarController::class, 'switch'])->name('switchy')->middleware('admin');
 
+    Route::get('/kullanicilar', [KullaniciController::class, 'index'])->name('admin.users')->middleware('admin');
 });

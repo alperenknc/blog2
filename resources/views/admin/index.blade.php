@@ -1,6 +1,8 @@
 
 @extends('admin.layouts.index')
-
+@section('title')
+Admin Panel
+@endsection
 @section('content')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Entry-->
