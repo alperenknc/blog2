@@ -7,15 +7,26 @@
     <!-- HTML Meta Tags -->
     <title>Home Page | Read Each Blog</title>
     <meta name="title" content="Home Page | Read Each Blog">
-    <meta name="description" content="The information you need is here readeach.com">
-    <meta name="keywords" content="blog,blog site,web site,new,,sql,Writing,Teams,Teamwork,Sports,News,Techno, Technolgy,Technology,Advertising,Anime,Art,Books,Blogging,Business,Business Development,Christiani,Christianity,Comedy ,Comedy ,future,Video Games,read,readeach,each,books">
+    <meta name="description" content="The information you need is here read each ,share as you read, learn and teach as you share,All the information you can see soon will be here">
+    <meta name="keywords"
+        content="blog,blog site,web site,new,,sql,Writing,Teams,Teamwork,Sports,News,Techno, Technolgy,Technology,Advertising,Anime,Art,Books,Blogging,Business,Business Development,Christiani,Christianity,Comedy ,Comedy ,future,Video Games,read,readeach,each,books">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
     <meta name="revisit-after" content="1 days">
     <meta name="author" content="AK">
     <meta itemprop="image" content="{{ asset('/assets/images/logo-header.png') }}">
-   <!-- HTML Meta Tags -->
+
+    <meta property="og:title" content="Home Page | Read Each Blog">
+    <meta property="og:description" content="The information you need is here read each ,share as you read, learn and teach as you share,All the information you can see soon will be here">
+    <meta property="og:image" content="{{ asset('/assets/images/logo-header.png') }}">
+    <meta property="og:url" content="http://reaeach.com">
+
+    <meta name="twitter:title" content="Home Page | Read Each Blog">
+    <meta name="twitter:description" content="The information you need is here read each ,share as you read, learn and teach as you share,All the information you can see soon will be here">
+    <meta name="twitter:url" content="http://reaeach.com">
+    <meta name="twitter:card" content="blog,blog site,web site,new,future,Video Games,read,readeach,each,books">
+    <!-- HTML Meta Tags -->
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
